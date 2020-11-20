@@ -16,6 +16,10 @@ app.use(
 // app.use("/refresh_token", cookieParser());
 // app.post("/refresh_token", refreshToken);
 
+app.get("/", (req, res) => {
+  res.send("alo");
+});
+
 const port = process.env.PORT || 4000;
 
 apolloServer.applyMiddleware({ app, cors: false });
