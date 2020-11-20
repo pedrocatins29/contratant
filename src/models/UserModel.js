@@ -21,9 +21,7 @@ export const userModel = {
     });
   },
 
-  createProfissao(){
-    
-  }
+  createProfissao() {},
 
   createUser(
     nome,
