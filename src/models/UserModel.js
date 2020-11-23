@@ -21,7 +21,15 @@ export const userModel = {
     });
   },
 
-  createProfissao() {},
+  createProfissao() {
+    const query = "";
+    return new Promise((resolve, reject) => {
+      db.query((error, result) => {
+        if (error) reject(new Error(error));
+        resolve(result);
+      });
+    });
+  },
 
   createUser(
     nome,
@@ -31,12 +39,10 @@ export const userModel = {
     photo,
     description,
     cellphone,
-    prestador,
-    Localidade_id,
-    date_created
+    Localidade_id
   ) {
     const query =
-      "INSERT INTO contratant(nome,username,email,senha,photo,description,cellphone,prestador,Localidade_id,date_created)VALUES(?, ? ,? ,?, ?, ?, ?, ?, ?, ?)";
+      "INSERT INTO contratant(nome,username,email,senha,photo,description,cellphone,Localidade_id)VALUES(?, ? ,? ,?, ?, ?, ?, ?)";
     return new Promise((resolve, reject) => {
       db.query(
         query,
