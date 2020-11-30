@@ -21,16 +21,6 @@ export const userModel = {
     });
   },
 
-  createProfissao() {
-    const query = "";
-    return new Promise((resolve, reject) => {
-      db.query((error, result) => {
-        if (error) reject(new Error(error));
-        resolve(result);
-      });
-    });
-  },
-
   createUser(
     nome,
     username,
@@ -42,7 +32,8 @@ export const userModel = {
     Localidade_id
   ) {
     const query =
-      "INSERT INTO contratant(nome,username,email,senha,photo,description,cellphone,Localidade_id)VALUES(?, ? ,? ,?, ?, ?, ?, ?)";
+      "INSERT INTO user(nome,username,email,senha,photo,description,cellphone,Localidade_id)VALUES(?, ? ,? ,?, ?, ?, ?, ?)";
+    console.log(query);
     return new Promise((resolve, reject) => {
       db.query(
         query,
@@ -54,27 +45,14 @@ export const userModel = {
           photo,
           description,
           cellphone,
-          prestador,
           Localidade_id,
-          date_created,
         ],
         (error, result) => {
-          if (error) reject(new Error(error));
+          if (error) {
+            console.log(error);
+            reject(new Error(error));
+          }
           resolve(result);
-        }
-      );
-    });
-  },
-  updateUser(nome, email, photo, description, cellphone, id) {
-    const query =
-      "UPDATE `contratant`.`user` SET `nome` = ? , `email` = ? , `photo` = ? , `description` = ? ,`cellphone` = ? , WHERE `id` = ? ";
-    return new Promise((resolve, reject) => {
-      db.query(
-        query,
-        [nome, email, photo, description, cellphone, id],
-        (error, result) => {
-          if (error) reject(error);
-          resolve(result.changedRows);
         }
       );
     });

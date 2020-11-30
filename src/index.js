@@ -3,6 +3,8 @@ import "dotenv/config";
 import "regenerator-runtime/runtime.js";
 import cors from "cors";
 import { apolloServer } from "./Apollo";
+import cookieParser from "cookie-parser";
+import { refreshToken } from "./controller/Auth/refreshToken";
 
 const app = express();
 
@@ -13,8 +15,8 @@ app.use(
   })
 );
 
-// app.use("/refresh_token", cookieParser());
-// app.post("/refresh_token", refreshToken);
+app.use("/refresh_token", cookieParser());
+app.post("/refresh_token", refreshToken);
 
 app.get("/", (req, res) => {
   res.send("alo");

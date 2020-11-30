@@ -12,6 +12,9 @@ export const userType = gql`
     prestador: Boolean
     date_created: String
   }
+  type LoginResponse {
+    accessToken: String
+    user: User
+  }
 `;
-
 // localidade: Localidade
