@@ -1,4 +1,5 @@
 import db from "../config/db";
+import { hash } from "bcrypt";
 
 export const userModel = {
   findUserByParam(param, value) {
@@ -21,7 +22,7 @@ export const userModel = {
     });
   },
 
-  createUser(
+  async createUser(
     nome,
     username,
     email,
@@ -33,7 +34,7 @@ export const userModel = {
   ) {
     const query =
       "INSERT INTO user(nome,username,email,senha,photo,description,cellphone,Localidade_id)VALUES(?, ? ,? ,?, ?, ?, ?, ?)";
-    console.log(query);
+    const hashedPassword = await hash(senha, 12);
     return new Promise((resolve, reject) => {
       db.query(
         query,
@@ -41,7 +42,7 @@ export const userModel = {
           nome,
           username,
           email,
-          senha,
+          hashedPassword,
           photo,
           description,
           cellphone,

@@ -8,6 +8,7 @@ import { verify } from "jsonwebtoken";
 
 export const refreshToken = async (req, res) => {
   const token = req.cookies.chicoMedio;
+  console.log(req.cookies.chicoMedio);
 
   if (!token) {
     return res.send({ ok: false, accessToken: "" });

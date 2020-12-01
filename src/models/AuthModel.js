@@ -36,7 +36,7 @@ export const AuthModel = {
       throw new Error("Usuario nao encontrado");
     }
 
-    const isValid = await compare(password, user.password);
+    const isValid = await compare(password, user.senha);
 
     if (!isValid) {
       throw new Error("Usuario nao encontrado");
