@@ -3,7 +3,7 @@ import { hash } from "bcrypt";
 
 export const userModel = {
   findUserByParam(param, value) {
-    const query = `select * from user where ${param} = ?`;
+    const query = `select * from User where ${param} = ?`;
     return new Promise((resolve, reject) => {
       db.query(query, [value], (error, result) => {
         if (error) reject(error);
@@ -13,7 +13,7 @@ export const userModel = {
   },
 
   findUsers() {
-    const query = `select * from user`;
+    const query = `select * from User`;
     return new Promise((resolve, reject) => {
       db.query(query, (error, result) => {
         if (error) reject(error);
@@ -33,7 +33,7 @@ export const userModel = {
     Localidade_id
   ) {
     const query =
-      "INSERT INTO user(nome,username,email,senha,photo,description,cellphone,Localidade_id)VALUES(?, ? ,? ,?, ?, ?, ?, ?)";
+      "INSERT INTO User(nome,username,email,senha,photo,description,cellphone,Localidade_id)VALUES(?, ? ,? ,?, ?, ?, ?, ?)";
     const hashedPassword = await hash(senha, 12);
     return new Promise((resolve, reject) => {
       db.query(
